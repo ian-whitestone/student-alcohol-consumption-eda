@@ -8,12 +8,10 @@ from sklearn.metrics import r2_score #accuracy_score is same as model.score()
 from scipy import stats
 from sklearn.feature_selection import f_regression
 
-
 #cd ~/Documents/Programming/Python/Data\ Analyst\ ND/UD201/modules
 
 #GET DATA
-filepath='/Users/whitesi/Documents/Programming/Python/Data Analyst ND/UD201/'
-df=pd.read_csv(filepath+'student-mat.csv',delimiter=';')
+df=pd.read_csv('../student-mat.csv',delimiter=';')
 
 ##CLEAN DATA
 ###convert all binary options to 1,0
@@ -32,7 +30,6 @@ df=df.drop(['Mjob','Fjob','reason','guardian'],axis=1) #drop categorical columns
 
 
 x_vars=['Medu'] ##for testing R2 scores with specific features
-
 
 #INIT MODEL
 Y=df['Walc'].values #or Dalc (workday alcohol consumption)

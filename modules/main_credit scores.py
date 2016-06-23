@@ -9,8 +9,7 @@ from sklearn.metrics import r2_score #accuracy_score is same as model.score()
 #cd ~/Documents/Programming/Python/Data\ Analyst\ ND/UD201/modules
 
 #GET DATA
-filepath='/Users/whitesi/Documents/Programming/Python/Data Analyst ND/UD201/'
-df=pd.read_csv(filepath+'default of credit card clients.csv',skiprows=[0])
+df=pd.read_csv('../default of credit card clients.csv',skiprows=[0])
 
 #SET INDEPENDENT VARS
 x_vars=['LIMIT_BAL','SEX','EDUCATION','MARRIAGE','AGE']
@@ -19,7 +18,7 @@ x_vars=['LIMIT_BAL','SEX','EDUCATION','MARRIAGE','AGE']
 
 #INIT MODEL
 Y=df['default payment next month'].values
-X=df[x_vars].values
+# X=df[x_vars].values
 X=df.drop('default payment next month',axis=1) #include all vars as predictors
 
 logreg = linear_model.LogisticRegression()
@@ -41,10 +40,12 @@ print('Coefficients are: %s'% logreg.coef_)
 
 
 
-#######NOTE TO SELF#############
+								#######NOTES TO SELF#############
 ##currently getting accruacy score of ~70% no matter what variables are added
 ##looking at data, 80% of Y's are 0, so if you just guessed 0 you'd be right about 80% of the time..
 ##in other words, we have no improvement over the mean...
+######DIAGNOSIS: imbalanced dataset....apparently a common problem...research methods for dealing with this!
+# http://machinelearningmastery.com/tactics-to-combat-imbalanced-classes-in-your-machine-learning-dataset/
 
 
 ##update: I am getting negative R2 scores with the given linear, logistic model
